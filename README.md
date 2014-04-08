@@ -1,6 +1,8 @@
 JOUR491-CrimeOnCampus
 =====================
 
-Tony Papousek
-Anna Gronewold
-Travis Shafer
+**Tony Papousek**
+
+**Anna Gronewold**
+
+**Travis Shafer**
