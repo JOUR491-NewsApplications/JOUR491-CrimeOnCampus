@@ -53,3 +53,6 @@ coverage.xml
 docs/_build/
 
 settings.py
+
+# Ignore Emacs and BlueFish autosave files
+*~
