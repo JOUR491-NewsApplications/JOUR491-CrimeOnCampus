@@ -53,13 +53,6 @@ coverage.xml
 docs/_build/
 
 settings.py
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 
 # Ignore Emacs and BlueFish autosave files
->>>>>>> 6d3258a... Update .gitignore
-=======
-
->>>>>>> 4222759040fa0c01b68a4696deb388f2c59c3b57
 *~
