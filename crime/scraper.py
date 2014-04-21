@@ -3,6 +3,7 @@
 
 import sys, os
 
+sys.setrecursionlimit(20000)
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "crime.settings") 
 
 from reports.models import Building, Location, Incident, Status, CrimeReport
@@ -43,8 +44,11 @@ for number in numbers:
         damage = row.find(id=re.compile('.*_Label7')).string
         clearance = row.find(id=re.compile('.*_Label8')).string
         narrative = row.find(id=re.compile('.*_Label9')).string
-        b, bcreated = Building.objects.get_or_create(name=building, name_slug=slugify(building)
-        print b
+        if building == None:
+            pass
+        else:
+            b, bcreated = Building.objects.get_or_create(name=building, name_slug=slugify(building))
+            print b
    
 """
 for i in incidents:
