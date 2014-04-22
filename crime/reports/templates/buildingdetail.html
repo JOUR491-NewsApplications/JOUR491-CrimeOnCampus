@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}Crime on Campus{% endblock %}
+
+
+{% block header %}<h1>{{ building.name }}</h1>{% endblock %}
+
+{% block content %}
+
+{% for object in crimes %}
+<p><a href="{{ object.get_absolute_url }}">{{ object.reported_time }}</a> <a href="https://scsapps.unl.edu/policereports/ReportViewer_HTML.aspx?rpt={{ object.incident_number }}">See details.</a></p>
+{% endfor %}
+
+{% endblock %}
