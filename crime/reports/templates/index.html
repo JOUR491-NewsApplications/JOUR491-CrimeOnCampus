@@ -1,8 +1,14 @@
-{% extends "base.html"}
+{% extends "base.html" %}
 
-{% block title %}{% endblock %}
+{% block title %}Crime on Campus{% endblock %}
 
 
-{% block header %}{% endblock %}
+{% block header %}<h1>Crime on Campus</h1>{% endblock %}
 
-{% block content %}{% endblock %}
+{% block content %}
+
+{% for object in buildings %}
+<p><a href="{{ object.get_absolute_url }}">{{ object.name }}</a></p>
+{% endfor %}
+
+{% endblock %}
