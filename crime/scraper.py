@@ -31,8 +31,10 @@ for number in numbers:
     rows = reports_container.findAll('tr')
     for row in rows:
         tds = row.findAll('td')
-        reptid = tds[0]
+        reptid = int(tds[0].a.string)
         reported = row.find(id=re.compile('.*_Label2')).string
+        tickparse = time.strptime(reported, "%m/%d/%Y %H:%M")
+        tick_date = datetime.datetime(tickparse.tm_year, tickparse.tm_mon, tickparse.tm_mday, tickparse.tm_hour, tickparse.tm_min)
         occurred = row.find(id=re.compile('.*_Label10')).string
         try:
             building = row.find(id=re.compile('.*_Label3')).string
@@ -40,32 +42,25 @@ for number in numbers:
             building = "Unknown"
         street = row.find(id=re.compile('.*_Label4')).string
         incident = row.find(id=re.compile('.*_Label5')).string
-        stolen = row.find(id=re.compile('.*_Label6')).string
+        stoln = row.find(id=re.compile('.*_Label6')).string
         damage = row.find(id=re.compile('.*_Label7')).string
         clearance = row.find(id=re.compile('.*_Label8')).string
         narrative = row.find(id=re.compile('.*_Label9')).string
         if building == None:
-            pass
+            b = None
         else:
-            b, bcreated = Building.objects.get_or_create(name=building, name_slug=slugify(building))
-            print b
-   
-"""
-for i in incidents:
-    if i[2]:
-        lt, ltcreated = LocationType.objects.get_or_create(location_type="Building", location_type_slug="building")
-        incloc, incloccreated = Location.objects.get_or_create(location_type=lt, location=i[2], location_slug=slugify(i[2]))
-    elif i[3]:
-        lt, ltcreated = LocationType.objects.get_or_create(location_type="Street", location_type_slug="street")
-        incloc, incloccreated = Location.objects.get_or_create(location_type=lt, location=i[3], location_slug=slugify(i[3]))
-    else:
-        lt, ltcreated = LocationType.objects.get_or_create(location_type="Unknown", location_type_slug="unknown")
-        incloc, incloccreated = Location.objects.get_or_create(location_type=lt, location="Unspecified", location_slug="unspecified")
-    #idate = time.strptime(i[1], "%a, %d %b %Y %H:%M:%S CST")
-    idate = time.strptime(i[1], "%m/%d/%Y %H:%M")
-    incdate = datetime.datetime(idate.tm_year, idate.tm_mon, idate.tm_mday, idate.tm_hour, idate.tm_min, idate.tm_sec)
-    inctype, inctypecreated = IncidentType.objects.get_or_create(incident_type=i[4], incident_type_slug=slugify(i[4]))
-    clr, clrcreated = Clearance.objects.get_or_create(clearance_type=i[7], clearance_type_slug=slugify(i[7]))
-    inc, inccreated = Incident.objects.get_or_create(incident_id=i[0], incident_date=incdate, incident_location=incloc, incident_type=inctype, stolen_amount=i[5], damaged_amount=i[6], clearance=clr, narrative=i[8])
-    print inc
-"""
+            b, bcreated = Building.objects.get_or_create(name=building, name_slug=slugify(building))        
+        if street == None:
+            l = None
+        else:
+            l, lcreated = Location.objects.get_or_create(name=street, name_slug=slugify(street))
+        if incident == None:
+            i = None
+        else:
+            i, icreated = Incident.objects.get_or_create(name=incident, name_slug=slugify(incident))
+        if clearance == None:
+            s = None
+        else:
+            s, screated = Status.objects.get_or_create(name=clearance, name_slug=slugify(clearance))
+        c, ccreated = CrimeReport.objects.get_or_create(incident_number=reptid, reported_time=tick_date, status_code=s, occurred_time=occurred, building=b, location=l, incident_code=i, stolen=stoln, damaged=damage, summary=narrative)
+        print c

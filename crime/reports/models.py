@@ -35,15 +35,15 @@ class Status(models.Model):
 class CrimeReport(models.Model):
     incident_number = models.IntegerField()
     reported_time = models.DateTimeField()
-    status_code = models.ForeignKey(Status)
-    occurred_time = models.CharField(max_length=255)
+    status_code = models.ForeignKey(Status, blank=True, null=True)
+    occurred_time = models.CharField(max_length=255, blank=True, null=True)
     building = models.ForeignKey(Building, blank=True, null=True)
     location = models.ForeignKey(Location, blank=True, null=True)
     incident_code = models.ForeignKey(Incident, blank=True, null=True)
-    stolen = models.DecimalField(blank=True, null=True, decimal_places=2, max_digits=15)
-    damaged = models.DecimalField(blank=True, null=True, decimal_places=2, max_digits=15)
-    summary = models.CharField(max_length=256, blank=True, null=True)
+    stolen = models.CharField(max_length=255, blank=True, null=True)
+    damaged = models.CharField(max_length=255, blank=True, null=True)
+    summary = models.TextField(blank=True, null=True)
     def get_absolute_url(self):
         return "/incident/%i/" % self.incident_number
     def __unicode__(self):
-        return self.incident_number
+        return "A %s on %s" % (self.incident_code.name, self.reported_time)
