@@ -4,17 +4,19 @@ class Building(models.Model):
     name = models.CharField(max_length=255)
     name_slug = models.SlugField()
     def get_absolute_url(self):
-        return "http://127.0.0.1:8000/buildings/%s/" % self.name_slug
+        return "/buildings/%s/" % self.name_slug
     def __unicode__(self):
         return self.name
 
 class Location(models.Model):
-    name = models.CharField(max_length=255)
-    name_slug = models.SlugField()
+    address = models.CharField(max_length=255)
+    address_slug = models.SlugField()
+    city = models.CharField(max_length=255, default="Lincoln, NE")
+    building = models.ForeignKey(Building, blank=True, null=True)
     def get_absolute_url(self):
-        return "/locations/%s/" % self.name_slug
+        return "http://127.0.0.1:8000/buildings/%s/" % self.address_slug
     def __unicode__(self):
-        return self.name
+        return self.address
 
 class Incident(models.Model):
     name = models.CharField(max_length=255)
