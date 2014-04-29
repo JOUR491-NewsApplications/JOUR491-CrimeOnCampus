@@ -686,7 +686,8 @@ oTNCMS_Ad.show(null, null, 'http://bloximages.newyork1.vip.townnews.com/dailyneb
         <!-- Standard Story Page -->
         <div id="article-content" class="col-md-8">
             <div id="article-image" class="content-container left">
-Got a visualization? Put it here. Attach a width parameter to it.
+{% block viz %}
+{% endblock %}
             </div>
             <div class="content-container left">
 {% block content %}

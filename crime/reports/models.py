@@ -4,7 +4,7 @@ class Building(models.Model):
     name = models.CharField(max_length=255)
     name_slug = models.SlugField()
     def get_absolute_url(self):
-        return "/buildings/%s/" % self.name_slug
+        return "http://127.0.0.1:8000/buildings/%s/" % self.name_slug
     def __unicode__(self):
         return self.name
 

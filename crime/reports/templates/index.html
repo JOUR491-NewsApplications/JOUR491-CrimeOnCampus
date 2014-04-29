@@ -4,7 +4,9 @@
 
 
 {% block header %}<h1>Crime on Campus</h1>{% endblock %}
-
+{% block viz %}
+<iframe width="800" height="500" scrolling="no" frameborder="no" src="https://www.google.com/fusiontables/embedviz?q=select+col0+from+1OBcRSwUI8iXtmyb5gNl8Pa0EA5mqfj397NIZFZQ9&amp;viz=MAP&amp;h=false&amp;lat=40.8228581720583&amp;lng=-96.68621077014154&amp;t=1&amp;z=14&amp;l=col0&amp;y=2&amp;tmplt=2&amp;hml=GEOCODABLE"></iframe>
+{% endblock %}
 {% block content %}
 
 {% for object in buildings %}
