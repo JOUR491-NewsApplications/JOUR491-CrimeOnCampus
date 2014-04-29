@@ -46,6 +46,6 @@ class CrimeReport(models.Model):
     damaged = models.CharField(max_length=255, blank=True, null=True)
     summary = models.TextField(blank=True, null=True)
     def get_absolute_url(self):
-        return "/incident/%i/" % self.incident_number
+        return "http://127.0.0.1:8000/incident/%i/" % self.incident_number
     def __unicode__(self):
         return "A %s on %s" % (self.incident_code.name, self.reported_time)
