@@ -7,7 +7,10 @@
 {% block viz %}
 <iframe width="800" height="500" scrolling="no" frameborder="no" src="https://www.google.com/fusiontables/embedviz?q=select+col0+from+1OBcRSwUI8iXtmyb5gNl8Pa0EA5mqfj397NIZFZQ9&amp;viz=MAP&amp;h=false&amp;lat=40.8228581720583&amp;lng=-96.68621077014154&amp;t=1&amp;z=14&amp;l=col0&amp;y=2&amp;tmplt=2&amp;hml=GEOCODABLE"></iframe>
 {% endblock %}
+
 {% block content %}
+<h3>Bad things happen.</h3>
+<p>But people are keeping track. Check out the interactive map above to see where crimes happen on campus. These are all the crimes reported by the University of Nebraska-Lincoln (UNLPD) in the past 18 months. Click a building or location on the list below to see a complete listing of the crimes reported there.</p>
 
 {% for object in buildings %}
 <p><a href="{{ object.get_absolute_url }}">{{ object.name }}</a></p>
