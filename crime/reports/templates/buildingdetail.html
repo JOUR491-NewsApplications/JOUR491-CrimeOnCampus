@@ -3,12 +3,17 @@
 {% block title %}Crime on Campus{% endblock %}
 
 
-{% block header %}<h1>{{ building.name }}</h1>{% endblock %}
+{% block header %}<h1>Crime at {{ building.name }}</h1>{% endblock %}
 
 {% block content %}
 
+<div id="accordion">
 {% for object in crimes %}
-<p><a href="{{ object.get_absolute_url }}">{{ object.reported_time }}</a> <a href="https://scsapps.unl.edu/policereports/ReportViewer_HTML.aspx?rpt={{ object.incident_number }}">See details.</a></p>
+<h4><a href="{{ object.get_absolute_url }}">{{ object.reported_time }} - {{ object.incident_code }}</a></h4>
+<div>
+<p><strong>Summary:</strong> {{ object.summary }} </p>
+<p><strong>Status:</strong> {{ object.status_code }}</p>
+</div>
 {% endfor %}
 
 {% endblock %}
