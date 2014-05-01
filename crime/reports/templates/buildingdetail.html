@@ -9,11 +9,14 @@
 
 <div id="accordion" class="col-md-12">
 {% for object in crimes %}
-<h4><a href="{{ object.get_absolute_url }}">{{ object.reported_time }} - {{ object.incident_code }}</a></h4>
+<h4><a href="{{ object.get_absolute_url }}">{{ object.reported_time }}</a></h4>
 <div>
 <p><strong>Summary:</strong> {{ object.summary }} </p>
 <p><strong>Status:</strong> {{ object.status_code }}</p>
+<p><strong>Incident Code:</strong> {{ object.incident_code }} </p>
+<p><strong><a href="https://scsapps.unl.edu/policereports/MainPage.aspx" target="_blank">Data taken from UNLPD</strong></p>
 </div>
+
 {% endfor %}
 </div>
 {% endblock %}
