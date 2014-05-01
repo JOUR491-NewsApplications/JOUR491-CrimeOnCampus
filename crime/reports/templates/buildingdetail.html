@@ -7,7 +7,7 @@
 
 {% block content %}
 
-<div id="accordion">
+<div id="accordion" class="col-md-12">
 {% for object in crimes %}
 <h4><a href="{{ object.get_absolute_url }}">{{ object.reported_time }} - {{ object.incident_code }}</a></h4>
 <div>
@@ -15,5 +15,5 @@
 <p><strong>Status:</strong> {{ object.status_code }}</p>
 </div>
 {% endfor %}
-
+</div>
 {% endblock %}
